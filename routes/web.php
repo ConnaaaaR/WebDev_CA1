@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/projects/index', [projectController::class, 'index']);
+
 // ProjectController Routes
 Route::resource('/projects', projectController::class);
 Route::resource('/projects', projectController::class)->middleware(['auth']);
