@@ -1,20 +1,30 @@
 <x-app-layout>
-    <h1 class="text-5xl">Projects</h1>
-    <div class="grid grid-cols-4 auto-cols-max justify-evenly">
-        @unless(count($projects) == 0)
-
-        @foreach ($projects as $project)
-        <x-project-card :project="$project" />
-        @endforeach
-        @foreach ($projects as $project)
-        <x-project-card :project="$project" />
-        @endforeach
-       
     
+    <div class="flex justify-center flex-">
+        <p class="text-5xl">Projects</p>
+        <div class="flex flex-wrap gap-4 justify-center my-24 w-1/2">
             
-        @else
-        <p>No Projects Found</p>
-        @endunless
+            @unless(count($projects) == 0)
+    
+            @foreach ($projects as $project)
+            <x-project-card :project="$project" />
+            @endforeach
+            @foreach ($projects as $project)
+            <x-project-card :project="$project" />
+            @endforeach
+            @foreach ($projects as $project)
+            <x-project-card :project="$project" />
+            @endforeach
+            @foreach ($projects as $project)
+            <x-project-card :project="$project" />
+            @endforeach
+           
+          
+            @else
+            <p>No Projects Found</p>
+            @endunless
+        </div>
     </div>
+    
    
 </x-app-layout>
