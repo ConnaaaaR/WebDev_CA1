@@ -33,7 +33,7 @@ class projectController extends Controller
         ]);
 
         $img = $request->file('image');
-        $img->move('images/', now()->timezone('Europe/Dublin')->format('Ymd_His') . $img->getClientOriginalName());
+        $img->move('storage/images', now()->timezone('Europe/Dublin')->format('Ymd_His') . $img->getClientOriginalName());
 
         Project::create([
 
