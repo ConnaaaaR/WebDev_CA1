@@ -33,7 +33,8 @@ class projectController extends Controller
         ]);
 
         $img = $request->file('image');
-        $img->move('storage/images', now()->timezone('Europe/Dublin')->format('Ymd_His') . $img->getClientOriginalName());
+        $img->move('storage/images');
+        $img->now()->timezone('Europe/Dublin')->format('Ymd_His') . $img->getClientOriginalName();
 
         Project::create([
 
@@ -49,8 +50,12 @@ class projectController extends Controller
         return to_route('projects.index');
     }
 
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+
+        if ($project->user_id != Auth::id()) {
+            return abort(403);
+        }
+        return view('projects.show')->with('project', $project);
     }
 }

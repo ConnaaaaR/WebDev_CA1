@@ -6,8 +6,9 @@
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$project->title}}</h5>
     </a>
     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ Str::limit($project->text,100)}}</p>
-    <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-sea-blue rounded-lg hover:bg-open-sky focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+    <a href="{{ route('projects.show', $project) }}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-sea-blue rounded-lg hover:bg-open-sky focus:ring-4 focus:outline-none focus:ring-blue-300 ">
         Read more 
         
     </a>
+    <img src="{{asset('storage/images/'.$project->image)}}" alt="">
 </div>
