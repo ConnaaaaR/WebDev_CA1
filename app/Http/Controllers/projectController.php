@@ -12,7 +12,9 @@ class projectController extends Controller
     // Main page, displays all projects
     public function index()
     {
-        $projects = Project::where('user_id', Auth::id())->latest('updated_at')->paginate(6);
+
+        $projects = Project::latest('updated_at')->paginate(6);
+
         return view('projects.index')->with('projects', $projects);
     }
 
