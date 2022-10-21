@@ -25,18 +25,27 @@ class projectController extends Controller
     // Stores Function, sends post request
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
-            'title' => 'required',
+
+            'title' => 'required|max:120',
             'text' => 'required'
         ]);
 
+        $img = $request->file('image');
+        $img->move('images/', now()->timezone('Europe/Dublin')->format('Ymd_His') . $img->getClientOriginalName());
+
         Project::create([
+
             'uuid' => Str::uuid(),
             'user_id' => Auth::id(),
             'title' => $request->title,
             'text' => $request->text,
-            'image' => $request->file('image')
+            'image' => $img
+
         ]);
+
+
         return to_route('projects.index');
     }
 
