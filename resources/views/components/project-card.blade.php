@@ -2,6 +2,8 @@
 
 
 <div class="basis-1/2 grow  p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 hover:scale-95 hover:transition ease-in-out">
+    <img src="{{ asset('img/'.$project->image)}}" alt="" class="rounded-lg mb-1">
+    <hr>
     <a href="#">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$project->title}}</h5>
     </a>
@@ -10,5 +12,5 @@
         Read more 
         
     </a>
-    <img src="{{asset('storage/images/'.$project->image)}}" alt="">
+    
 </div>
