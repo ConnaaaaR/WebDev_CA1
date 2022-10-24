@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\User as UserM;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
