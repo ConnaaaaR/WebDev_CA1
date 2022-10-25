@@ -74,9 +74,9 @@ class projectController extends Controller
     {
 
         $user = User::find($project->user_id);
-        if ($project->user_id != Auth::id()) {
-            return abort(403);
-        }
+        // if ($project->user_id != Auth::id()) {
+        //     return abort(403);
+        // }
         return view('projects.show')->with('project', $project)->with('user', $user);
     }
 }
