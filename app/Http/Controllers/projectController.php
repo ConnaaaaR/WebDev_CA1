@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class projectController extends Controller
 {
+    public function dashboard()
+    {
+        $projects = Project::where('user_id', Auth::id())->paginate(6);
+        return view('projects.projectDashboard')->with('projects', $projects);
+    }
+
     // Main page, displays all projects
     public function index()
     {
@@ -55,6 +61,8 @@ class projectController extends Controller
 
         return to_route('projects.index');
     }
+
+
 
     public function show(Project $project)
     {

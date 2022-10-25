@@ -21,6 +21,7 @@
                         {{ __('Create') }}
                     </x-nav-link>
                 </div>
+               
             </div>
 
             <!-- Settings Dropdown -->
