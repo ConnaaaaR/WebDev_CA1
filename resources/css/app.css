@@ -12,5 +12,9 @@
 }
 
 .btn-primary {
-    @apply bg-endless-oasis text-frost rounded border border-frost py-2 px-4 hover:bg-frost hover:text-endless-oasis hover:border hover:border-endless-oasis;
+    @apply bg-endless-oasis text-frost rounded-lg border border-frost py-2 px-4 hover:bg-frost hover:text-endless-oasis hover:border hover:border-endless-oasis;
+}
+
+.btn-danger {
+    @apply bg-red-600 text-frost rounded-lg border border-frost py-2 px-4 hover:bg-frost hover:text-red-700 hover:border hover:border-endless-oasis;
 }

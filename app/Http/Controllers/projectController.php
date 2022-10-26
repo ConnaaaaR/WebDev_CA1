@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\User as UserM;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,7 +44,6 @@ class projectController extends Controller
 
             'uuid' => Str::uuid(),
             'user_id' => Auth::id(),
-
             'title' => $request->title,
             'text' => $request->text,
             'image' => $fn
@@ -53,16 +51,16 @@ class projectController extends Controller
         ]);
 
 
-        return to_route('projects.index');
+        return to_route('projects.index')->with('message', "Project Uploaded Successfully");
     }
 
     public function show(Project $project)
     {
 
         $user = User::find($project->user_id);
-        if ($project->user_id != Auth::id()) {
-            return abort(403);
-        }
+        // if ($project->user_id != Auth::id()) {
+        //     return abort(403);
+        // }
         return view('projects.show')->with('project', $project)->with('user', $user);
     }
 }
