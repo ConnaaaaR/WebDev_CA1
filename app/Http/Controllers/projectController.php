@@ -60,7 +60,7 @@ class projectController extends Controller
     public function userprojects()
     {
         $projects = Project::where('user_id', Auth::id())->paginate(6);
-        $user = Auth::id();
+     
         // dd($projects);
 
         // if ($projects->user_id != Auth::id()) {
@@ -68,7 +68,7 @@ class projectController extends Controller
         // }
 
 
-        return view('projects.userprojects')->with('projects', $projects)->with('user', $user);
+        return view('projects.userprojects')->with('projects', $projects);
     }
 
     public function show(Project $project)
