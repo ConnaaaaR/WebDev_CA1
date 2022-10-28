@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\User as UserM;
-use Illuminate\Foundation\Auth\User;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
 
 class projectController extends Controller
@@ -60,14 +60,15 @@ class projectController extends Controller
     public function userprojects()
     {
         $projects = Project::where('user_id', Auth::id())->paginate(6);
-        dd($projects);
+        $user = Auth::id();
+        // dd($projects);
 
-        if ($projects->user_id != Auth::id()) {
-            return abort(403);
-        }
+        // if ($projects->user_id != Auth::id()) {
+        //     return abort(403);
+        // }
 
 
-        return view('projects.userprojects')->with('projects', $projects);
+        return view('projects.userprojects')->with('projects', $projects)->with('user', $user);
     }
 
     public function show(Project $project)
