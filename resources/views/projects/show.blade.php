@@ -12,7 +12,7 @@
         </div>
         @if ($project->user_id === Auth::id())
         <div class="mt-4"></div>
-            <a class="btn-primary">Edit</a>
+            <a class="btn-primary" href="{{route('projects.edit',$project)}}">Edit</a>
             <a class="btn-danger">Delete</a>
         @endif
     </x-card-base>

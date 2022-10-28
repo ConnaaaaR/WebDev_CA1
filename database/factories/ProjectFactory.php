@@ -20,7 +20,7 @@ class ProjectFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'text' => $this->faker->paragraph(5),
-            'image' => $this->faker->imageUrl(300, 218, 'landscape', true, 'mountain', true, 'png'),
+            'image' => $this->faker->image(null, 640, 480),
 
         ];
     }
