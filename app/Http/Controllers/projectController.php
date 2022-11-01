@@ -53,7 +53,7 @@ class projectController extends Controller
             'text' => $request->text,
             'image' => $fn
         ]);
-        return to_route('projects.show', $project);
+        return to_route('projects.show', $project)->with('success', 'Successfully edited project');  
     }
 
 
@@ -113,6 +113,16 @@ class projectController extends Controller
             return abort(403);
         }
         return view('projects.show')->with('project', $project)->with('user', $user);
+    }
+
+    public function destroy(Project $project)
+    {
+       if($project->user_id != Auth::id()){
+           return abort(403);
+       }
+
+       $project->delete();
+       return to_route('projects.index');
     }
 
 
