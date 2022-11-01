@@ -1,11 +1,8 @@
 <x-app-layout>
-    <x-slot name='header'>
-
-    </x-slot>
-    <h1 class="mx auto">Upload a new project!</h1>
-    <div class="mx-auto gap-4  my-24 w-1/3 bg-white p-5 rounded">
+       <div class="mx-auto gap-4  my-24 w-1/3 bg-white p-5 rounded">
         <form  method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data" class="mx-auto">
             @csrf
+            <h1 class="mx auto mb-5">Upload a new project!</h1>
             <div class="mb-5">
                 <label
                     for="title"
