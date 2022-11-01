@@ -93,6 +93,7 @@ class projectController extends Controller
             'uuid' => Str::uuid(),
             'user_id' => Auth::id(),
             'title' => $request->title,
+            'tags' => $request->tags,
             'text' => $request->text,
             'image' => $fn
         ]);

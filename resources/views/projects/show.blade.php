@@ -6,6 +6,7 @@
         </ul>
     </div>
 @endif
+    <x-tags :tagsCsv={{$project->tags}}/>
     <x-card-base>
         <div class="flex flex-col gap-5">
             <p class="text-5xl mx-auto text-center mt-10">{{$project->title}}</p>
@@ -15,12 +16,15 @@
             <div class="flex gap-1">
                 <p class="font-bold">Uploaded by:</p>
                 <p class="">{{$user->name}}</p>
+                
             </div>
         </div>
+        
+        <div class="my-4"></div>
+        
         @if ($project->user_id === Auth::id())
-        <div class="mt-4"></div>
+        <div class="mt-4 flex"></div>
             <a class="btn-primary" href="{{route('projects.edit',$project)}}">Edit</a>
-            {{-- <a onclick="return confirm('Are you sure?')" class="btn-danger" href="{{route('projects.destroy', $project)}}">Delete</a> --}}
             <form action="{{ route('projects.destroy', $project) }}" method="post">
                 @method('Delete')
                 @csrf
