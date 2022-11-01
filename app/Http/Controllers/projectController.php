@@ -18,7 +18,7 @@ class projectController extends Controller
      */
     public function index()
     {
-        $projects = Project::latest('updated_at')->simplePaginate(6);
+        $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->paginate(6);
         return view('projects.index')->with('projects', $projects);
     }
 
@@ -93,6 +93,7 @@ class projectController extends Controller
             'uuid' => Str::uuid(),
             'user_id' => Auth::id(),
             'title' => $request->title,
+            'tags' => $request->tags,
             'text' => $request->text,
             'image' => $fn
         ]);

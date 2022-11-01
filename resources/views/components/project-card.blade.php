@@ -11,4 +11,6 @@
     <a href="{{ route('projects.show', $project) }}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-sea-blue rounded-lg hover:bg-open-sky hover:scale-95 hover:transition ease-in-out focus:ring-4 focus:outline-none focus:ring-blue-300 ">
         Read more 
     </a>
+    
 </div>
+<x-project-tags :tagsCsv={{$project->tags}}/>

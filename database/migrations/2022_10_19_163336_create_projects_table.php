@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('uuid');
             $table->foreignId('user_id')->constrained();
             $table->string('title');
+            $table->string('tags');
             $table->longText('text');
             $table->string('image');
             $table->timestamps();
