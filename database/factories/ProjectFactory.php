@@ -17,11 +17,12 @@ class ProjectFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'title' => $this->faker->sentence(),
             'text' => $this->faker->paragraph(5),
-            'image' => $this->faker->image(null, 640, 480),
-
+            'tags' => 'tag1,tag2,tag3',
+            'image' => $this->faker->image(public_path('img'), 640, 480, null, false)
         ];
     }
 }

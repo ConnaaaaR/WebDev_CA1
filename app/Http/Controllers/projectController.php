@@ -18,7 +18,7 @@ class projectController extends Controller
      */
     public function index()
     {
-        $projects = Project::latest('updated_at')->paginate(6);
+        $projects = Project::latest('updated_at')->simplePaginate(6);
         return view('projects.index')->with('projects', $projects);
     }
 
