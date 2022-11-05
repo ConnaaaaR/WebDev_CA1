@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 
 // ProjectController Routes
+Route::get('projects/logout', [projectController::class, 'logout'])->name('projects.logout');
 Route::get('/projects/userprojects', [projectController::class, 'userprojects'])->name('projects.userprojects');
 Route::resource('/projects', projectController::class);
-Route::resource('/projects', projectController::class)->middleware(['auth']);
+// Route::resource('/projects', projectController::class)->middleware(['auth']);
 
 
 

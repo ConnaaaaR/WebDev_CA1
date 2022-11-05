@@ -14,6 +14,8 @@ module.exports = {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
             },
 
+
+
             colors: {
                 "open-sky": "#4EA5D9",
                 "sea-blue": "#0471A6",
@@ -21,8 +23,14 @@ module.exports = {
                 "rose": "#AC80A0",
                 "frost": "#FBF9FF",             
             },
+
+
+            screens: {
+                
+              },
         },
     },
 
     plugins: [require("@tailwindcss/forms")],
 };
+

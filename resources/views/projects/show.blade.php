@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layout>
     @if (\Session::has('success'))
     <div class="alert alert-success">
         <ul>
@@ -19,18 +19,20 @@
             <img src="{{$project->image ? asset('img/'. $project->image) : asset('storage/images/no-image.png')}}" alt="" class="rounded-lg mb-1">
 
             <p class="text-md mx-auto">{{$project->text}}</p>
+            @if ($project->user_id !== Auth::id())
             <div class="flex gap-1">
                 <p class="font-bold">Uploaded by:</p>
-                <p class="">{{$user->name}}</p>
+                <p class="">{{ucFirst($user->name)}}</p>
                 
             </div>
+            
+            <a href="#" class="btn-primary text-center">Contact Owner</a>
+            @endif
         </div>
         
-        <div class="my-4"></div>
+        
         
         @if ($project->user_id === Auth::id())
-        
-            
             <form action="{{ route('projects.destroy', $project) }}" method="post">
                 @method('Delete')
                 @csrf
@@ -39,5 +41,5 @@
                 </form>
         @endif
     </x-card-base>
-</x-app-layout>
+</x-layout>
 
