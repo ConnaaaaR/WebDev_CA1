@@ -22,11 +22,12 @@
             @if ($project->user_id !== Auth::id())
             <div class="flex gap-1">
                 <p class="font-bold">Uploaded by:</p>
-                <p class="">{{ucFirst($user->name)}}</p>
+               
+                <p class="">{{ ucFirst($user->name)}}</p>
                 
             </div>
             
-            <a href="#" class="btn-primary text-center">Contact Owner</a>
+            <a href="{{ route('projects.user',$user)}}" class="btn-primary text-center">Contact Owner</a>
             @endif
         </div>
         

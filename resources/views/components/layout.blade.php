@@ -29,6 +29,7 @@
 </head>
 <body class="font-['Barlow']">
 
+    {{-- Nav elements will only display if it is not the current route and the user is authed / not authed accordingly --}}
     <nav>
         <div class="w-screen bg-neutral-700 h-[5px]"></div>
         <div class="flex gap-10 items-center justify-between">
@@ -38,6 +39,7 @@
             </div>
            
             <ul class="flex text-xl gap-10 mr-24">
+                {{-- if current route is projects, add hidden class, else nothing. Could've probably been done in JS too but oh well  --}}
                 <li class="{{ (request()->is('projects')) ? 'hidden' : '' }}">
                     <a href="{{route('projects.index')}}" class="navElement"
                         > Home</a
