@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,8 +21,10 @@ class projectController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->simplePaginate(6);
-        return view('projects.index')->with('projects', $projects);
+        return view('admin.projects.index')->with('projects', $projects);
     }
 
     /**
@@ -31,8 +34,10 @@ class projectController extends Controller
      */
     public function userprojects()
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         $projects = Project::where('user_id', Auth::id())->paginate(6);
-        return view('projects.userprojects')->with('projects', $projects);
+        return view('admin.projects.userprojects')->with('projects', $projects);
     }
 
 
@@ -48,7 +53,7 @@ class projectController extends Controller
         // if ($project->user_id != Auth::id()) {
         //     return abort(403);
         // }
-        return view('projects.show')->with('project', $project)->with('user', $user);
+        return view('admin.projects.show')->with('project', $project)->with('user', $user);
     }
 
     // --- PAGES END---//
@@ -63,7 +68,9 @@ class projectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        return view('admin.projects.create');
     }
 
     /**
@@ -74,8 +81,10 @@ class projectController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         if (!$request->hasFile('image')) {
-            return to_route('project.create')->with('message', 'No file uploaded');
+            return to_route('admin.project.create')->with('message', 'No file uploaded');
         }
         $request->validate([
             'title' => 'required|max:50',
@@ -96,7 +105,7 @@ class projectController extends Controller
             'text' => $request->text,
             'image' => $fn
         ]);
-        return to_route('projects.index')->with('message', "Project Uploaded Successfully");
+        return to_route('admin.projects.index')->with('message', "Project Uploaded Successfully");
     }
 
     //--- CREATE END ---//
@@ -112,12 +121,11 @@ class projectController extends Controller
      */
     public function destroy(Project $project)
     {
-        if ($project->user_id != Auth::id()) {
-            return abort(403);
-        }
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
 
         $project->delete();
-        return to_route('projects.index');
+        return to_route('admin.projects.index');
     }
 
     /**
@@ -128,10 +136,9 @@ class projectController extends Controller
      */
     public function edit(Project $project)
     {
-        if ($project->user_id != Auth::id()) {
-            return abort(403);
-        }
-        return view('projects.edit')->with('project', $project);
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        return view('admin.projects.edit')->with('project', $project);
     }
 
 
@@ -144,6 +151,8 @@ class projectController extends Controller
      */
     public function update(Project $project, Request $request)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         $request->validate([
             'title' => 'required|max:50',
             'text' => 'required|max:200',
@@ -161,7 +170,7 @@ class projectController extends Controller
             'text' => $request->text,
             'image' => $fn
         ]);
-        return to_route('projects.show', $project)->with('success', 'Successfully edited project');
+        return to_route('admin.projects.show', $project)->with('success', 'Successfully edited project');
     }
 
 

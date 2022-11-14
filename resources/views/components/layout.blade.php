@@ -35,29 +35,34 @@
         <div class="flex gap-10 items-center justify-between">
             <div class="flex items-center">
                 <a href="/projects" class="bg-neutral-700 text-white"><img src="{{ asset('no-image.png') }}" alt="company logo" class="px-20 h-20 min-w-min"></a>
-                <p class="pl-4 font-semibold capitalize">Welcome @auth {{Auth::user()->name}}@endauth!</p class="">
+                <p class="pl-4 font-semibold capitalize">Welcome @auth {{Auth::user()->name}}@endauth!</p>
+                <p class="ml-5 text-red-600">{{ (Auth::user()->hasRole('admin') ? 'Admin Account' : '')}}</p>
             </div>
            
             <ul class="flex text-xl gap-10 mr-24">
                 {{-- if current route is projects, add hidden class, else nothing. Could've probably been done in JS too but oh well  --}}
-                <li class="{{ (request()->is('projects')) ? 'hidden' : '' }}">
-                    <a href="{{route('projects.index')}}" class="navElement"
+                <li class="{{ (request()->is('*/projects')) ? 'hidden' : '' }}">
+                    <a href="{{route('user.projects.index')}}" class="navElement"
                         > Home</a
                     >
                 </li>
                 @auth
-                <li class="{{ (request()->is('projects/create')) ? 'hidden' : '' }}">
-                    <a href="{{route('projects.create')}}" class="navElement"
+                @php
+                 $user = Auth::user()
+                @endphp
+                <li class="{{ (request()->is('admin/projects/create')) ? 'hidden' : '' }}{{ $user->hasRole('admin') ? '' : 'hidden' }}">
+                    <a href="{{route('admin.projects.create')}}" class="navElement"
                         > Upload</a
                     >
                 </li>
-                <li class="{{ (request()->is('projects/userprojects')) ? 'hidden' : '' }}">
-                    <a href="{{route('projects.userprojects')}}" class="navElement"
+                
+                <li class="{{ (request()->is('*/projects/userprojects')) ? 'hidden' : '' }} {{ $user->hasRole('admin') ? '' : 'hidden' }}">
+                    <a href="{{route('admin.projects.userprojects')}}" class="navElement"
                         > Dashboard</a
                     >
-                </li>
+                </li> 
                 <li>
-                    <a href="{{route('projects.logout')}}" class=" btn-primary" onclick="return confirm('Are you sure you want to log out?')"
+                    <a href="{{route('admin.projects.logout')}}" class=" btn-primary" onclick="return confirm('Are you sure you want to log out?')"
                     > Logout</a
                 >
                    

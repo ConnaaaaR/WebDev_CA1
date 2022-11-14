@@ -1,5 +1,5 @@
-
 <x-layout>
+    @auth
        <div class="mx-auto gap-4  my-24 w-1/3 bg-white p-5 rounded">
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -10,9 +10,10 @@
             </ul>
         </div>
         @endif
-        <form  method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data" class="mx-auto">
+        <form  method="POST" action="{{ route('admin.projects.update', $project) }}" enctype="multipart/form-data" class="mx-auto">
+            @method('put')
             @csrf
-            <h1 class="mx auto mb-5">Upload a new project!</h1>
+            <h1 class="mx auto mb-5">Edit an existing project!</h1>
             <div class="mb-5">
                 <label
                     for="title"
@@ -24,7 +25,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     required
                     name="title"
-                    value="{{ old('title') }}"
+                    value="{{ old('title', $project->title) }}"
                 />
                 @error('title')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -40,7 +41,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     required 
                     name="image"
-                    value="{{ old('image') }}"
+                    value="{{ old('image', $project->image) }}"
                 />
                 @error('image')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -54,7 +55,7 @@
                 class="border border-gray-200 rounded p-2 w-full"
                 required
                 name="tags"
-                value="{{ old('tags') }}"
+                value="{{ old('tags', $project->tags) }}"
                 />
             </div>
          
@@ -73,7 +74,7 @@
                     placeholder="Include a description of your project."
                 
                 >
-                {{ old('text') }}
+                {{ old('text', $project->text) }}
             </textarea>
                 @error('text')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -84,7 +85,7 @@
                 <button
                     class="btn-primary"
                 >
-                    Upload Project
+                    Publish Changes
                 </button>
     
                 <a href="/projects" class=" bg-endless-oasis text-frost rounded border border-frost py-2 px-4 hover:bg-frost hover:text-endless-oasis hover:border hover:border-endless-oasis"> Back </a>
@@ -95,4 +96,5 @@
     <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
         
     </div>
+    @endauth
 </x-layout>

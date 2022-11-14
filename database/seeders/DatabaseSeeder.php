@@ -17,13 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $user = User::factory(1)->create();
 
         Project::factory(6)->create([
             'uuid' => Str::uuid(),
             'user_id' => 1,
         ]);
-
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

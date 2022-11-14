@@ -27,18 +27,18 @@
                 
             </div>
             
-            <a href="{{ route('projects.user',$user)}}" class="btn-primary text-center">Contact Owner</a>
+            <a href="{{ route('admin.projects.user',$user)}}" class="btn-primary text-center">Contact Owner</a>
             @endif
         </div>
         
         
         
         @if ($project->user_id === Auth::id())
-            <form action="{{ route('projects.destroy', $project) }}" method="post">
+            <form action="{{ route('admin.projects.destroy', $project) }}" method="post">
                 @method('Delete')
                 @csrf
                 <button type="submit" class="btn-danger" onclick="return confirm('Are you sure you want to delete this project?')"> Delete</button>
-                <a class="btn-primary" href="{{route('projects.edit',$project)}}">Edit</a>
+                <a class="btn-primary" href="{{route('admin.projects.edit',$project)}}">Edit</a>
                 </form>
         @endif
     </x-card-base>

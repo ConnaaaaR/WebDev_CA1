@@ -15,7 +15,7 @@ class userController extends Controller
     public function logout()
     {
         Auth::logout();
-        return to_route('projects.index');
+        return to_route('home.index');
     }
 
     /**
