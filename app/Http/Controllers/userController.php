@@ -26,6 +26,6 @@ class userController extends Controller
      */
     public function show(User $user)
     {
-        return view('projects.user')->with('user', $user);
+        return view('user.projects.user')->with('user', $user);
     }
 }

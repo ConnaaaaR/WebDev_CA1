@@ -11,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- Bootstrap --}}
-    @if(Route::is('project.create'))
+    @if(Route::is('admin.project.create'))
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     @endif
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,12 +33,13 @@
     <nav>
         <div class="w-screen bg-neutral-700 h-[5px]"></div>
         <div class="flex gap-10 items-center justify-between">
+
             <div class="flex items-center">
                 <a href="/projects" class="bg-neutral-700 text-white"><img src="{{ asset('no-image.png') }}" alt="company logo" class="px-20 h-20 min-w-min"></a>
                 <p class="pl-4 font-semibold capitalize">Welcome @auth {{Auth::user()->name}}@endauth!</p>
                 <p class="ml-5 text-red-600">{{ (Auth::user()->hasRole('admin') ? 'Admin Account' : '')}}</p>
             </div>
-           
+
             <ul class="flex text-xl gap-10 mr-24">
                 {{-- if current route is projects, add hidden class, else nothing. Could've probably been done in JS too but oh well  --}}
                 <li class="{{ (request()->is('*/projects')) ? 'hidden' : '' }}">
