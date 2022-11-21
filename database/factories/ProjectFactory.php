@@ -21,7 +21,9 @@ class ProjectFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'text' => $this->faker->paragraph(5),
+            'uuid' => $this->faker->uuid(),
             'tags' => 'tag1,tag2,tag3',
+            'user_id' => rand(1, 5)
 
         ];
     }

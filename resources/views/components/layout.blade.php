@@ -35,7 +35,7 @@
         <div class="flex gap-10 items-center justify-between">
 
             <div class="flex items-center">
-                <a href="/projects" class="bg-neutral-700 text-white"><img src="{{ asset('no-image.png') }}" alt="company logo" class="px-20 h-20 min-w-min"></a>
+                <a href="{{route('user.projects.index')}}" class="bg-neutral-700 text-white"><img src="{{ asset('no-image.png') }}" alt="company logo" class="px-20 h-20 min-w-min"></a>
                 <p class="pl-4 font-semibold capitalize">Welcome @auth {{Auth::user()->name}}@endauth!</p>
                 <p class="ml-5 text-red-600">{{ (Auth::user()->hasRole('admin') ? 'Admin Account' : '')}}</p>
             </div>

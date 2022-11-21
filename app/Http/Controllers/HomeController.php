@@ -12,14 +12,19 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    /**
+     * Shows the home page dependant on user role, if any.
+     * 
+     * @return \Iluminate\Http\Response
+     */
+    public function index()
     {
         $user = Auth::user();
         $home = 'home';
 
         if ($user->hasRole('admin')) {
             $home = 'admin.projects.index';
-        } elseif ($user->hasRole('user')) {
+        } else {
             $home = 'user.projects.index';
         }
         return redirect()->route($home);

@@ -1,10 +1,4 @@
 <x-layout>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
     @if (\Session::has('success'))
     <div class="alert alert-success">
         <ul>
@@ -25,14 +19,19 @@
             <img src="{{$project->image ? asset('img/'. $project->image) : asset('storage/images/no-image.png')}}" alt="" class="rounded-lg mb-1">
 
             <p class="text-md mx-auto">{{$project->text}}</p>
-            @if ($project->user_id !== Auth::id())
             <div class="flex gap-1">
                 <p class="font-bold">Uploaded by:</p>
                
                 <p class="">{{ ucFirst($user->name)}}</p>
                 
             </div>
-            
+            <div class="flex gap-1">
+                <p class="font-bold">Company: </p>
+               
+                <p class="">{{$user->company->name}}</p>
+                
+            </div>
+            @if ($project->user_id !== Auth::id())    
             <a href="{{ route('admin.projects.user',$user)}}" class="btn-primary text-center">Contact Owner</a>
             @endif
         </div>

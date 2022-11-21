@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Author;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Project extends Model
 {
@@ -14,7 +15,10 @@ class Project extends Model
         'created_at',
         'updated_at',
     ];
-
+    public function owner()
+    {
+        $this->belongsTo(User::class);
+    }
 
     public function getRouteKeyName()
     {

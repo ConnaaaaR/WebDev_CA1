@@ -13,6 +13,7 @@
                 <x-project-tags :tagsCsv="$project->tags" ></x-project-tags>
             </div>
             <hr>
+            
             <a href="{{ route('admin.projects.show', $project) }}">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$project->title}}</h5>
                 <p class="mb-3 font-normal text-gray-700 ">{{ Str::limit($project->text,100)}}</p>

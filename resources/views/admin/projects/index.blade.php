@@ -10,9 +10,11 @@
 
     @unless(count($projects) == 0)
     @auth
+
     @foreach ($projects as $project)
     <x-project-card :project="$project" />
     @endforeach
+    
     @endauth
     @else
     <p>No Projects Found</p>

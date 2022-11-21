@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
 class projectController extends Controller
@@ -22,7 +23,9 @@ class projectController extends Controller
     public function index()
     {
         $user = Auth::user();
+        /* eslint-disable */
         $user->authorizeRoles('admin');
+        /* eslint-enable */
         $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->simplePaginate(6);
         return view('admin.projects.index')->with('projects', $projects);
     }
@@ -49,7 +52,9 @@ class projectController extends Controller
      */
     public function show(Project $project)
     {
+
         $user = User::find($project->user_id);
+
         // if ($project->user_id != Auth::id()) {
         //     return abort(403);
         // }

@@ -87,7 +87,7 @@
                     Upload Project
                 </button>
     
-                <a href="/projects" class=" bg-endless-oasis text-frost rounded border border-frost py-2 px-4 hover:bg-frost hover:text-endless-oasis hover:border hover:border-endless-oasis"> Back </a>
+                <a href="{{redirect()->getUrlGenerator()->previous()}}" class=" bg-endless-oasis text-frost rounded border border-frost py-2 px-4 hover:bg-frost hover:text-endless-oasis hover:border hover:border-endless-oasis"> Back </a>
             </div>
         </form>
     </div>
