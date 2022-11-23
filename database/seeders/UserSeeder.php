@@ -19,7 +19,11 @@ class UserSeeder extends Seeder
     {
         $role_admin = Role::where('name', 'admin')->first();
 
+        $role_lead = Role::where('name', 'companyLead')->first();
+
         $role_user = Role::where('name', 'user')->first();
+
+
 
         // create user with admin role
         $admin = new User();
@@ -30,6 +34,7 @@ class UserSeeder extends Seeder
         $admin->save();
 
         $admin->roles()->attach($role_admin);
+        $admin->roles()->attach($role_lead);
 
         //create new user with user role
         $user = new User();

@@ -35,7 +35,7 @@
         <div class="flex gap-10 items-center justify-between">
 
             <div class="flex items-center">
-                <a href="{{route('user.projects.index')}}" class="bg-neutral-700 text-white"><img src="{{ asset('no-image.png') }}" alt="company logo" class="px-20 h-20 min-w-min"></a>
+                <a href="{{route('home.index')}}" class="bg-neutral-700 text-white"><img src="{{ asset('no-image.png') }}" alt="company logo" class="px-20 h-20 min-w-min"></a>
                 <p class="pl-4 font-semibold capitalize">Welcome @auth {{Auth::user()->name}}@endauth!</p>
                 <p class="ml-5 text-red-600">{{ (Auth::user()->hasRole('admin') ? 'Admin Account' : '')}}</p>
             </div>
@@ -51,17 +51,17 @@
                 @php
                  $user = Auth::user()
                 @endphp
-                <li class="{{ (request()->is('admin/projects/create')) ? 'hidden' : '' }}{{ $user->hasRole('admin') ? '' : 'hidden' }}">
+                <li class="{{ (request()->is('admin/projects/create')) ? 'hidden' : '' }}{{ $user->hasRole('admin') || $user->hasRole('companyLead') ? '' : 'hidden' }}">
                     <a href="{{route('admin.projects.create')}}" class="navElement"
                         > Upload</a
                     >
                 </li>
                 
-                <li class="{{ (request()->is('*/projects/userprojects')) ? 'hidden' : '' }} {{ $user->hasRole('admin') ? '' : 'hidden' }}">
+                <li class="{{ (request()->is('*/projects/userprojects')) ? 'hidden' : '' }} {{ $user->hasRole('admin') ? '' : 'hidden' }} {{$user->hasRole('companyLead') ? '' : 'hidden' }}" >
                     <a href="{{route('admin.projects.userprojects')}}" class="navElement"
-                        > Dashboard</a
-                    >
+                    > Dashboard</a>
                 </li> 
+
                 <li>
                     <a href="{{route('admin.projects.logout')}}" class=" btn-primary" onclick="return confirm('Are you sure you want to log out?')"
                     > Logout</a

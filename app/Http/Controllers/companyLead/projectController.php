@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\companyLead;
 
 use App\Models\User;
 use App\Models\Project;
@@ -24,10 +24,10 @@ class projectController extends Controller
     {
         $user = Auth::user();
         /* eslint-disable */
-        $user->authorizeRoles('admin');
+        $user->authorizeRoles('companyLead');
         /* eslint-enable */
         $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->simplePaginate(6);
-        return view('admin.projects.index')->with('projects', $projects);
+        return view('companyLead.projects.index')->with('projects', $projects);
     }
 
     /**
@@ -37,14 +37,12 @@ class projectController extends Controller
      */
     public function userprojects()
     {
+
         $user = Auth::user();
-        if ($user->hasRole('companyLead') && !$user->hasRole('admin')) {
-            return view('companyLead.projects.userprojects');
-        }
-        $user->authorizeRoles('admin');
+        $user->authorizeRoles('companyLead');
         // $projects = Project::where('user_id', Auth::id())->paginate(6);
-        $projects = $user->projects->all();
-        return view('admin.projects.userprojects')->with('projects', $projects);
+        $projects = $user->company->projects->all();
+        return view('companyLead.projects.userprojects')->with('projects', $projects);
     }
 
 
@@ -56,12 +54,13 @@ class projectController extends Controller
      */
     public function show(Project $project)
     {
+
         $user = User::find($project->user_id);
 
-        if ($user->hasRole('companyLead')) {
-            return view('companyLead.projects.show')->with('project', $project)->with('user', $user);
-        }
-        return view('admin.projects.show')->with('project', $project)->with('user', $user);
+        // if ($project->user_id != Auth::id()) {
+        //     return abort(403);
+        // }
+        return view('companyLead.projects.show')->with('project', $project)->with('user', $user);
     }
 
     // --- PAGES END---//
@@ -77,12 +76,8 @@ class projectController extends Controller
     public function create()
     {
         $user = Auth::user();
-        if ($user->hasRole('companyLead') && !$user->hasRole('admin')) {
-            return to_route('companyLead.projects.create');
-        }
-
-        $user->authorizeRoles('admin');
-        return view('admin.projects.create');
+        $user->authorizeRoles('companyLead');
+        return view('companyLead.projects.create');
     }
 
     /**
@@ -94,9 +89,9 @@ class projectController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $user->authorizeRoles('admin');
+        $user->authorizeRoles('companyLead');
         if (!$request->hasFile('image')) {
-            return to_route('admin.project.create')->with('message', 'No file uploaded');
+            return to_route('companyLead.project.create')->with('message', 'No file uploaded');
         }
         $request->validate([
             'title' => 'required|max:50',
@@ -117,7 +112,7 @@ class projectController extends Controller
             'text' => $request->text,
             'image' => $fn
         ]);
-        return to_route('admin.projects.index')->with('message', "Project Uploaded Successfully");
+        return to_route('companyLead.projects.index')->with('message', "Project Uploaded Successfully");
     }
 
     //--- CREATE END ---//
@@ -134,10 +129,10 @@ class projectController extends Controller
     public function destroy(Project $project)
     {
         $user = Auth::user();
-        $user->authorizeRoles('admin');
+        $user->authorizeRoles('companyLead');
 
         $project->delete();
-        return to_route('admin.projects.index');
+        return to_route('companyLead.projects.index');
     }
 
     /**
@@ -149,12 +144,8 @@ class projectController extends Controller
     public function edit(Project $project)
     {
         $user = Auth::user();
-        if ($user->hasRole('companyLead') && !$user->hasRole('admin')) {
-            return to_route('companyLead.projects.edit');
-        }
-        $user = Auth::user();
-        $user->authorizeRoles('admin');
-        return view('admin.projects.edit')->with('project', $project);
+        $user->authorizeRoles('companyLead');
+        return view('companyLead.projects.edit')->with('project', $project);
     }
 
 
@@ -168,7 +159,7 @@ class projectController extends Controller
     public function update(Project $project, Request $request)
     {
         $user = Auth::user();
-        $user->authorizeRoles('admin');
+        $user->authorizeRoles('companyLead');
         $request->validate([
             'title' => 'required|max:50',
             'text' => 'required|max:200',
@@ -186,7 +177,7 @@ class projectController extends Controller
             'text' => $request->text,
             'image' => $fn
         ]);
-        return to_route('admin.projects.show', $project)->with('success', 'Successfully edited project');
+        return to_route('companyLead.projects.show', $project)->with('success', 'Successfully edited project');
     }
 
 

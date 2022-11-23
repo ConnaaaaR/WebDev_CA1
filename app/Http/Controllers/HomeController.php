@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -24,6 +23,8 @@ class HomeController extends Controller
 
         if ($user->hasRole('admin')) {
             $home = 'admin.projects.index';
+        } elseif ($user->hasRole('companyLead')) {
+            $home = 'companyLead.projects.index';
         } else {
             $home = 'user.projects.index';
         }
