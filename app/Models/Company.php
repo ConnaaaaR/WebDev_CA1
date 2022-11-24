@@ -10,7 +10,7 @@ class Company extends Model
     use HasFactory;
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->hasManyThrough(Project::class, User::class);
     }
 
     public function users()

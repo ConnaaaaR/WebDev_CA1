@@ -38,12 +38,9 @@ class projectController extends Controller
     public function userprojects()
     {
         $user = Auth::user();
-        if ($user->hasRole('companyLead') && !$user->hasRole('admin')) {
-            return view('companyLead.projects.userprojects');
-        }
         $user->authorizeRoles('admin');
         // $projects = Project::where('user_id', Auth::id())->paginate(6);
-        $projects = $user->projects->all();
+
         return view('admin.projects.userprojects')->with('projects', $projects);
     }
 

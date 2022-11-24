@@ -10,17 +10,18 @@ use Illuminate\Support\Facades\Route;
 // Additional Routes
 Route::get('admin/projects/user/{user}', [userController::class, 'show'])->name('admin.projects.user');
 Route::get('admin/projects/logout', [userController::class, 'logout'])->name('admin.projects.logout');
-
-
+Route::get('companyLead/projects/userprojects', [LeadProjectController::class, 'userprojects'])->name('companyLead.projects.userprojects');
+Route::get('admin/projects/userprojects', [AdminProjectController::class, 'userprojects'])->name('admin.projects.userprojects');
 
 //default 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 // --- --- ---
 //admin routes
+
 Route::resource('admin/projects', AdminProjectController::class)->middleware(['auth'])->names('admin.projects');
 
-Route::get('admin/projects/userprojects', [AdminProjectController::class, 'userprojects'])->name('admin.projects.userprojects');
+
 // --- --- ---
 
 
@@ -28,7 +29,7 @@ Route::get('admin/projects/userprojects', [AdminProjectController::class, 'userp
 //company lead routes
 Route::resource('companyLead/projects', LeadProjectController::class)->middleware(['auth'])->names('companyLead.projects');
 
-Route::get('companyLead/projects/userprojects', [LeadProjectController::class, 'userprojects'])->name('companyLead.projects.userprojects');
+
 
 Route::get('companyLead/projects/user/{user}', [userController::class, 'show'])->name('companyLead.projects.user');
 // --- --- ---

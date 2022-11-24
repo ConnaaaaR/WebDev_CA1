@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('tags');
             $table->longText('text');
             $table->string('image')->nullable();
+            $table->foreign('company_id')->constrained();
             $table->timestamps();
         });
     }

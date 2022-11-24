@@ -57,11 +57,15 @@
                     >
                 </li>
                 
-                <li class="{{ (request()->is('*/projects/userprojects')) ? 'hidden' : '' }} {{ $user->hasRole('admin') ? '' : 'hidden' }} {{$user->hasRole('companyLead') ? '' : 'hidden' }}" >
+                <li class="{{ (request()->is('*/projects/userprojects')) ? 'hidden' : '' }} {{ $user->hasRole('admin') ? '' : 'hidden' }} " >
                     <a href="{{route('admin.projects.userprojects')}}" class="navElement"
                     > Dashboard</a>
                 </li> 
-
+                
+                <li class="{{ (request()->is('*/projects/userprojects')) ? 'hidden' : '' }} {{$user->hasRole('companyLead') ? '' : 'hidden' }} " >
+                    <a href="{{route('companyLead.projects.userprojects')}}" class="navElement"
+                    > Company Dashboard</a>
+                </li> 
                 <li>
                     <a href="{{route('admin.projects.logout')}}" class=" btn-primary" onclick="return confirm('Are you sure you want to log out?')"
                     > Logout</a

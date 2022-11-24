@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\companyLead;
 
 use App\Models\User;
+use App\Models\Company;
 use App\Models\Project;
+
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+
 
 class projectController extends Controller
 {
@@ -31,17 +33,17 @@ class projectController extends Controller
     }
 
     /**
-     * Return all resources created by a user
+     * Return all resources created by a company
      * 
      * @return \Iluminate\Http\Response
      */
     public function userprojects()
     {
-
         $user = Auth::user();
         $user->authorizeRoles('companyLead');
-        // $projects = Project::where('user_id', Auth::id())->paginate(6);
-        $projects = $user->company->projects->all();
+
+        // This legitimately next line took me 4 hours, I thought I might have a breakdown. Who knew there is a method to deal with relationships such as these. hasManyThrough() WOW!
+        $projects = $user->company->projects()->get();
         return view('companyLead.projects.userprojects')->with('projects', $projects);
     }
 
