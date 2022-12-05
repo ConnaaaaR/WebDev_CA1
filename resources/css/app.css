@@ -27,5 +27,9 @@
     @apply text-neutral-700 hover:underline;
 }
 
+.listElement {
+    @apply text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-endless-oasis;
+}
+
 @media (min-width: 1000px) {
 }
