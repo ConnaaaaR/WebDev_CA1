@@ -39,7 +39,7 @@ class projectController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        // $projects = Project::where('user_id', Auth::id())->paginate(6);
+        $projects = Project::where('user_id', Auth::id())->paginate(6);
 
         return view('admin.projects.userprojects')->with('projects', $projects);
     }
@@ -149,7 +149,6 @@ class projectController extends Controller
         if ($user->hasRole('companyLead') && !$user->hasRole('admin')) {
             return to_route('companyLead.projects.edit');
         }
-        $user = Auth::user();
         $user->authorizeRoles('admin');
         return view('admin.projects.edit')->with('project', $project);
     }

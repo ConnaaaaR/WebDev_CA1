@@ -70,7 +70,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="text"
                     rows="4"
-                    placeholder="Include a description of your project."
+                    placeholder=""
                 
                 >
                 {{ old('text') }}

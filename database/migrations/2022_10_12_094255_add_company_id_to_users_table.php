@@ -21,7 +21,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('companies')
                 ->onUpdate('cascade')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
     }
 

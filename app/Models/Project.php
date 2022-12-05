@@ -20,6 +20,7 @@ class Project extends Model
         $this->belongsTo(User::class);
     }
 
+
     public function getRouteKeyName()
     {
         return 'uuid';

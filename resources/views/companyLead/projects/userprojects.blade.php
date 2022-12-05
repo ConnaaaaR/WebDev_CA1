@@ -11,7 +11,7 @@
         <p>No Projects Found</p>
         @endunless
         
-        <div class=" flex justify-center mb-4">{{$projects->links()}}</div>
+        {{-- <div class=" flex justify-center mb-4">{{$projects->links()}}</div> --}}
 
       </div>
       

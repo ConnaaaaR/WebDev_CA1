@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->onUpdate('cascade')->onDelete('cascade');;
             $table->string('title');
             $table->string('tags');
             $table->longText('text');
             $table->string('image')->nullable();
-            $table->foreign('company_id')->constrained();
+            // $table->foreign('company_id')->constrained();
             $table->timestamps();
         });
     }
