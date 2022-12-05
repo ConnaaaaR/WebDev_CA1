@@ -42,21 +42,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //returns user's projects
     public function projects()
     {
         return $this->hasMany(Project::class);
     }
 
+    //returns the company that the user belongs to
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
 
+    //returns the roles that the user has 
     public function Roles()
     {
         return $this->belongsToMany('App\Models\Role', 'user_role');
     }
 
+    // checks if the user has the specified role, if not returns 401
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {
@@ -65,10 +70,13 @@ class User extends Authenticatable
         return $this->hasRole($roles) || abort(401, 'Not Authorized.');
     }
 
+    //checks if the user has specified role
     public function hasRole($role)
     {
         return null !== $this->roles()->where('name', $role)->first();
     }
+
+    //checks if user has any role attached
     public function hasAnyRole($roles)
     {
         return null !== $this->roles()->whereIn('name', $roles)->first();

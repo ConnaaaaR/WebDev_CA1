@@ -17,7 +17,7 @@ class projectController extends Controller
     /**
      * Shows all created resources, sorted by recent.
      * 
-     * @param  Project $project
+     * 
      * @return \Iluminate\Http\Response
      */
     public function index()

@@ -44,7 +44,7 @@ class projectController extends Controller
 
         // This legitimately next line took me 4 hours, I thought I might have a breakdown. Who knew there is a method to deal with relationships such as these. hasManyThrough() WOW!
         $projects = $user->company->projects()->get();
-        return view('companyLead.projects.userprojects')->with('projects', $projects);
+        return view('companyLead.projects.userprojects')->with('projects', $projects)->with('user', $user);
     }
 
 
