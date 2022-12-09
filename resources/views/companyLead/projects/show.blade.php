@@ -32,10 +32,6 @@
                 <p class="">{{ $user->company->name }}</p>
 
             </div>
-            @if ($project->user_id !== Auth::id())
-                <a href="{{ route('companyLead.projects.user', $user) }}" class="btn-primary text-center">Contact
-                    Owner</a>
-            @endif
         </div>
 
 
