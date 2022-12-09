@@ -21,7 +21,7 @@ class projectController extends Controller
      */
     public function index()
     {
-        $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->simplePaginate(6);
+        $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->simplePaginate(12);
         return view('user.projects.index')->with('projects', $projects);
     }
 

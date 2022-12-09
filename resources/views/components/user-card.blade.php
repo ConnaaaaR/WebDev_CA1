@@ -1,9 +1,8 @@
 @props(['user'])
 
-<a href="{{ route('admin.users.show', $user) }}">
-    <div class=" p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:border-sea-blue">
+<div class="col-span-4 p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:border-sea-blue">
 
-
+    <a class="" href="{{ route('admin.users.show', $user) }}">
 
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $user->name }}</h5>
 
@@ -18,5 +17,5 @@
                 Delete</button>
             <a class="btn-primary" href="{{ route('admin.users.edit', $user) }}">Edit</a>
         </form>
-    </div>
-</a>
+    </a>
+</div>

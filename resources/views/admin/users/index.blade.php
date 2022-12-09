@@ -1,16 +1,19 @@
 <x-layout>
-    <div class="mx-auto flex flex-wrap gap-4 justify-center my-10 w-1/2">
-        @unless(count($users) == 0)
-            @auth
-                @foreach ($users as $user)
-                    <x-user-card :user="$user" />
-                @endforeach
+    <div class="container mx-auto">
+        <div class="grid grid-flow-row-dense grid-cols-12 gap-3 my-10">
+            @unless(count($users) == 0)
+                @auth
+                    @foreach ($users as $user)
+                        <x-user-card :user="$user" />
+                    @endforeach
 
-            @endauth
-        @else
-            <p>No Users Found (You should never see this!)</p>
-        @endunless
+                @endauth
+            @else
+                <p>No Users Found (You should never see this!)</p>
+            @endunless
 
 
+        </div>
     </div>
+
 </x-layout>

@@ -79,7 +79,6 @@ class userController extends Controller
         $u = Auth::user();
         $u->authorizeRoles('admin');
 
-
         dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],

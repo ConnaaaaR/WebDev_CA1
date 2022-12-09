@@ -26,7 +26,7 @@ class projectController extends Controller
         /* eslint-disable */
         $user->authorizeRoles('admin');
         /* eslint-enable */
-        $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->simplePaginate(6);
+        $projects = Project::latest('updated_at')->filter(request(['tag', 'search']))->simplePaginate(8);
         return view('admin.projects.index')->with('projects', $projects);
     }
 
