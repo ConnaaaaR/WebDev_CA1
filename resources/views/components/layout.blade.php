@@ -12,10 +12,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
 
-    {{-- Bootstrap --}}
-    @if (Route::is('admin.project.create'))
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    @endif
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap"
@@ -94,6 +91,7 @@
                                         <a href="{{ route('admin.company.create') }}" class="listElement">
                                             Create a Company</a>
                                         <a href="{{ route('admin.company.index') }}" class="listElement">Company List</a>
+                                        <a href="{{ route('admin.users.index') }}" class="listElement">User List</a>
 
                                     </div>
                                 </div>

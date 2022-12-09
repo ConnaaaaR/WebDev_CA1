@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\user\projectController as UserProjectController;
 use App\Http\Controllers\admin\projectController as AdminProjectController;
+use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\admin\companysController;
 use App\Http\Controllers\companyLead\projectController as LeadProjectController;
 use App\Http\Controllers\companysController as ControllersCompanysController;
-use App\Http\Controllers\userController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,9 +25,7 @@ Route::resource('admin/company', CompanysController::class)->middleware(['auth']
 
 Route::resource('admin/projects', AdminProjectController::class)->middleware(['auth'])->names('admin.projects');
 
-
-
-
+Route::resource('admin/users', userController::class)->middleware(['auth'])->names('admin.users');
 // --- --- ---
 
 
