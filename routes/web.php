@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Additional Routes
-Route::get('admin/projects/user/{user}', [userController::class, 'show'])->name('admin.projects.user');
+// Route::get('admin/projects/user/{user}', [userController::class, 'show'])->name('admin.projects.user');
 Route::get('admin/projects/logout', [userController::class, 'logout'])->name('admin.projects.logout');
 Route::get('companyLead/projects/userprojects', [LeadProjectController::class, 'userprojects'])->name('companyLead.projects.userprojects');
 Route::get('admin/projects/userprojects', [AdminProjectController::class, 'userprojects'])->name('admin.projects.userprojects');
@@ -35,7 +35,7 @@ Route::resource('companyLead/projects', LeadProjectController::class)->middlewar
 
 
 
-Route::get('companyLead/projects/user/{user}', [userController::class, 'show'])->name('companyLead.projects.user');
+// Route::get('companyLead/projects/user/{user}', [userController::class, 'show'])->name('companyLead.projects.user');
 // --- --- ---
 
 

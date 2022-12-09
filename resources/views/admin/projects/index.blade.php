@@ -12,7 +12,9 @@
             @unless(count($projects) == 0)
                 @auth
                     @foreach ($projects as $project)
-                        <x-project-card :project="$project" />
+                        <a href="{{ route('admin.projects.show', $project) }}">
+                            <x-project-card :project="$project" />
+                        </a>
                     @endforeach
                 @endauth
             @else

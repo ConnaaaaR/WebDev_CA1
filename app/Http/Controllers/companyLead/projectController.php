@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\companyLead;
 
 use App\Models\User;
-use App\Models\Company;
 use App\Models\Project;
 
 use Illuminate\Support\Str;
@@ -56,6 +55,9 @@ class projectController extends Controller
      */
     public function show(Project $project)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('companyLead');
+
 
         $user = User::find($project->user_id);
 
@@ -93,7 +95,7 @@ class projectController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('companyLead');
         if (!$request->hasFile('image')) {
-            return to_route('companyLead.project.create')->with('message', 'No file uploaded');
+            return to_route('companyLead.projects.create')->with('message', 'No file uploaded');
         }
         $request->validate([
             'title' => 'required|max:50',
@@ -130,9 +132,14 @@ class projectController extends Controller
      */
     public function destroy(Project $project)
     {
+
         $user = Auth::user();
         $user->authorizeRoles('companyLead');
 
+        $creatorId = User::find($project->user_id)->company_id;
+        if ($creatorId != $user->company_id) {
+            return abort(401, 'Not Authorized.');
+        }
         $project->delete();
         return to_route('companyLead.projects.index');
     }
@@ -147,6 +154,13 @@ class projectController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('companyLead');
+
+
+
+        $creatorId = User::find($project->user_id)->company_id;
+        if ($creatorId != $user->company_id) {
+            return abort(401, 'Not Authorized.');
+        }
         return view('companyLead.projects.edit')->with('project', $project);
     }
 

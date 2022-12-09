@@ -6,7 +6,9 @@
 
 
             @foreach ($projects as $project)
-                <x-project-card :project="$project" />
+                <a href="{{ route('companyLead.projects.show', $project) }}">
+                    <x-project-card :project="$project" />¨
+                </a>
             @endforeach
         @else
             <p>No Projects Found</p>

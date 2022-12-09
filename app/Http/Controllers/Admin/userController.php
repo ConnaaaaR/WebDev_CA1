@@ -60,10 +60,10 @@ class userController extends Controller
      */
     public function edit(User $user)
     {
-        $user = Auth::user();
+        $u = Auth::user();
         $companys = Company::all();
 
-        $user->authorizeRoles('admin');
+        $u->authorizeRoles('admin');
         return view('admin.users.edit')->with('user', $user)->with('companys', $companys);
     }
 
@@ -79,7 +79,7 @@ class userController extends Controller
         $u = Auth::user();
         $u->authorizeRoles('admin');
 
-        dd($request);
+        // dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],

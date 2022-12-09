@@ -19,13 +19,13 @@ class Project extends Model
     // returns the user that created the project
     public function owner()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->get();
     }
 
     //returns the company that the creator belongs to
-    public function company()
+    public function pcompany()
     {
-        return $this->belongsTo(User::class)->company()->get();
+        return $this->belongsTo(User::class)->company();
     }
 
     // Returns project unique id

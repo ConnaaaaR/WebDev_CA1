@@ -120,10 +120,10 @@ class companysController extends Controller
             'text' => 'required|max:200',
         ]);
 
-
+        // dd($request);
         $company->update([
-            'title' => $request->title,
-            'text' => $request->text,
+            'name' => $request->name,
+            'address' => $request->text,
         ]);
 
         $manager = User::find($request->company_lead);

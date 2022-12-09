@@ -6,18 +6,12 @@
 
 
     <div class="justify-center">
-        <a href="{{ route('companyLead.projects.show', $project) }}">
-            <img src="{{ $project->image ? asset('img/' . $project->image) : asset('no-image.png') }}" alt=""
-                class="rounded-lg mb-1 max-w-full overflow-hidden h-auto">
-        </a>
+        <img src="{{ $project->image ? asset('img/' . $project->image) : asset('no-image.png') }}" alt=""
+            class="rounded-lg mb-1 max-w-full overflow-hidden h-auto">
         <hr>
         <x-project-tags :tagsCsv="$project->tags"></x-project-tags>
         <hr>
     </div>
-
-
-    <a href="{{ route('companyLead.projects.show', $project) }}">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ Str::limit($project->title, 20) }}</h5>
-        <p class="mb-3 font-normal text-gray-700 ">{{ Str::limit($project->text, 25) }}</p>
-    </a>
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ Str::limit($project->title, 20) }}</h5>
+    <p class="mb-3 font-normal text-gray-700 ">{{ Str::limit($project->text, 25) }}</p>
 </div>
